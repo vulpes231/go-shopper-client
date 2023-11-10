@@ -1,15 +1,15 @@
 import React from "react";
-import { logo } from "../assets/";
+
+import Logo from "./Logo";
+import Links from "./Links";
+import Cart from "./Cart";
 const NavBar = () => {
   return (
-    <header className="h-[80px] fixed mb-[80px] bg-[#fff] w-full">
-      <nav>
-        <span>
-          <img src={logo} alt="go-shopper-logo" className="w-[30px]" />
-          <h1>
-            Go <span className="text-[#1E91D9]">Shopper</span>
-          </h1>
-        </span>
+    <header className="h-[80px] fixed mb-[80px] bg-[#fff] w-full grid content-center px-4">
+      <nav className="flex justify-between items-center">
+        <Logo />
+        <Links />
+        <Cart />
       </nav>
     </header>
   );
