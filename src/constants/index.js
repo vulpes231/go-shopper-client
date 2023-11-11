@@ -1,6 +1,6 @@
 // #030A8C #1E91D9 #176FA6 #F2F2F2 #0D0D0D
 
-const styles = {
+export const styles = {
   bgColors: {
     primary: "bg-[#176FA6]",
     secondary: "bg-[#1E91D9]",
@@ -11,6 +11,8 @@ const styles = {
     primary: "text-[#176FA6]",
     secondary: "text-[#1E91D9]",
   },
+  border: {
+    primary: "border-[#176FA6] ",
+    secondary: "border-[#1E91D9]",
+  },
 };
-
-export { styles };
