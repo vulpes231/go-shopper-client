@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Input from "../components/Input";
 import {
   HiOutlineMail,
@@ -10,10 +10,50 @@ import { BsShopWindow } from "react-icons/bs";
 import { categories } from "../constants/text";
 import { styles } from "../constants";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { createStore } from "../features/vendor/createStoreSlice";
 
-// name, owner, address, email, phone, category, logo
+const initState = {
+  store_name: "",
+  owner_name: "",
+  address: "",
+  email: "",
+  phone: "",
+  category: "",
+  password: "",
+  logo: null, // new field for the logo file
+};
 
 const VendorSignup = () => {
+  const dispatch = useDispatch();
+  const [form, setForm] = useState(initState);
+
+  const isLoading = useSelector((state) => state.createstore.isLoading);
+
+  // handle input change
+  const handleChange = (e) => {
+    const { name, value, type, files } = e.target;
+    setForm({
+      ...form,
+      [name]: type === "file" ? files[0] : value,
+    });
+  };
+
+  // handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Create a FormData object to send files
+    const formData = new FormData();
+    for (const key in form) {
+      formData.append(key, form[key]);
+    }
+
+    // Dispatch the action with the formData
+    dispatch(createStore(formData));
+  };
+
+  // get and populate categories
   const myCategories = categories.map((opt, index) => {
     return (
       <option key={index} value={opt}>
@@ -28,7 +68,7 @@ const VendorSignup = () => {
         Create New Store
       </h3>
       <form action="" className="flex flex-col gap-4 font-extralight">
-        <div>
+        <div className="flex flex-col gap-1">
           <h3 className="font-normal">Personal Information</h3>
           <Input
             type="text"
@@ -42,7 +82,7 @@ const VendorSignup = () => {
             placeHolder="Store Address (optional)"
           />
         </div>
-        <div>
+        <div className="flex flex-col gap-1">
           <h3 className="font-normal">Store Information</h3>
           {/* categories */}
           <select
@@ -66,22 +106,21 @@ const VendorSignup = () => {
             />
           </div>
         </div>
-        <div>
+        <div className="flex flex-col gap-1">
           <h3 className="font-normal">Contact Information</h3>
           <Input type="text" placeHolder="Phone" icon={<HiOutlinePhone />} />
           <Input type="text" placeHolder="Email" icon={<HiOutlineMail />} />
         </div>
         <button
-          className={`w-full ${styles.bgColors.primary} p-2 font-medium text-[#fff] rounded-md`}
+          className={`w-full ${styles.bgColors.primary} p-2 font-medium text-[#fff] rounded-md mt-5`}
+          onClick={handleSubmit}
+          disabled={isLoading} // Disable the button if isLoading is true
         >
-          Create Account
+          {isLoading ? "Creating Account..." : "Create Account"}
         </button>
         <p className="flex gap-2">
-          Already have a vendor account?{" "}
-          <Link
-            className={`underline ${styles.textColors.primary}`}
-            to="/vendor"
-          >
+          Already have a vendor account?
+          <Link className={` ${styles.textColors.primary}`} to="/vendor">
             Sign In
           </Link>
         </p>
