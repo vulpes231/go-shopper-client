@@ -19,7 +19,9 @@ const Links = ({ customClass, onClick }) => {
   const links = navLinks.map((link) => {
     return (
       <li key={link.id} className="capitalize">
-        <Link onClick={onClick}>{link.title}</Link>
+        <Link to={link.path} onClick={onClick}>
+          {link.title}
+        </Link>
       </li>
     );
   });

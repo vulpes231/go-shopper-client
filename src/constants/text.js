@@ -1,7 +1,7 @@
 export const navLinks = [
-  { id: "vendor", title: "vendor" },
-  { id: "buyer", title: "buyer" },
-  { id: "shops", title: "shops" },
-  { id: "about", title: "about" },
-  { id: "help", title: "help" },
+  { id: "vendor", title: "vendor", path: "/vendor" },
+  { id: "buyer", title: "buyer", path: "/buyer" },
+  { id: "shops", title: "shops", path: "/shops" },
+  { id: "about", title: "about", path: "/about" },
+  { id: "help", title: "help", path: "/help" },
 ];
