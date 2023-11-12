@@ -5,3 +5,18 @@ export const navLinks = [
   { id: "about", title: "about", path: "/about" },
   { id: "help", title: "help", path: "/help" },
 ];
+
+export const categories = [
+  "Fashion",
+  "Sport",
+  "Vehicles",
+  "Properties",
+  "Health & Beauty",
+  "Electronics",
+  "Art",
+  "Babies",
+  "Animals",
+  "Food & Drinks",
+  "Games",
+  "Computer",
+];

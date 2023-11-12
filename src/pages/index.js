@@ -1,3 +1,4 @@
-import Vendor from "./Vendor";
+import VendorLogin from "./VendorLogin";
+import VendorSignup from "./VendorSignup";
 
-export { Vendor };
+export { VendorLogin, VendorSignup };
