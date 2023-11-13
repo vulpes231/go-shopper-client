@@ -14,14 +14,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { createStore } from "../features/vendor/createStoreSlice";
 
 const initState = {
-  store_name: "",
-  owner_name: "",
+  name: "",
+  owner: "",
   address: "",
   email: "",
   phone: "",
   category: "",
   password: "",
-  logo: null, // new field for the logo file
+  logo: "", // new field for the logo file
 };
 
 const VendorSignup = () => {
@@ -29,30 +29,31 @@ const VendorSignup = () => {
   const [form, setForm] = useState(initState);
 
   const isLoading = useSelector((state) => state.createstore.isLoading);
+  const isError = useSelector((state) => state.createstore.isError);
 
   // handle input change
   const handleChange = (e) => {
-    const { name, value, type, files } = e.target;
-    setForm({
-      ...form,
-      [name]: type === "file" ? files[0] : value,
-    });
+    const { name, type } = e.target;
+    const value = type === "file" ? e.target.files[0] : e.target.value;
+
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
-  // handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // Create a FormData object to send files
     const formData = new FormData();
+
     for (const key in form) {
       formData.append(key, form[key]);
     }
-
     // Dispatch the action with the formData
-    dispatch(createStore(formData));
+    dispatch(createStore(form));
   };
-
   // get and populate categories
   const myCategories = categories.map((opt, index) => {
     return (
@@ -74,23 +75,46 @@ const VendorSignup = () => {
             type="text"
             icon={<HiOutlineUser />}
             placeHolder="Owner's Name"
+            value={form.owner}
+            onChange={handleChange}
+            name="owner"
           />
-          <Input type="text" icon={<BsShopWindow />} placeHolder="Store Name" />
+
           <Input
             type="text"
             icon={<HiOutlineUserAdd />}
             placeHolder="Store Address (optional)"
+            value={form.address}
+            onChange={handleChange}
+            name="address"
+          />
+          <Input
+            type="text"
+            placeHolder="Phone"
+            icon={<HiOutlinePhone />}
+            value={form.phone}
+            onChange={handleChange}
+            name="phone"
           />
         </div>
         <div className="flex flex-col gap-1">
           <h3 className="font-normal">Store Information</h3>
+          <Input
+            type="text"
+            icon={<BsShopWindow />}
+            placeHolder="Store Name"
+            value={form.name}
+            onChange={handleChange}
+            name="name"
+          />
           {/* categories */}
           <select
-            name=""
-            id=""
+            name="category"
+            value={form.category}
+            onChange={handleChange}
             className="w-full border border-[#333] p-2 outline-none"
           >
-            <option value="">Select category</option>
+            <option value="">Store category</option>
             {myCategories}
           </select>
 
@@ -100,21 +124,39 @@ const VendorSignup = () => {
             <input
               className="w-full border border-[#333] p-2"
               type="file"
-              name=""
-              id=""
+              name="logo"
+              value={form.logo}
+              onChange={handleChange}
               placeholder="Select store logo"
             />
           </div>
         </div>
         <div className="flex flex-col gap-1">
-          <h3 className="font-normal">Contact Information</h3>
-          <Input type="text" placeHolder="Phone" icon={<HiOutlinePhone />} />
-          <Input type="text" placeHolder="Email" icon={<HiOutlineMail />} />
+          <h3 className="font-normal">Login Information</h3>
+          <Input
+            type="text"
+            placeHolder="Email"
+            icon={<HiOutlineMail />}
+            value={form.email}
+            onChange={handleChange}
+            name="email"
+          />
+          <Input
+            type="password"
+            placeHolder="Password"
+            icon={<HiOutlinePhone />}
+            value={form.password}
+            onChange={handleChange}
+            name="password"
+          />
+        </div>
+        <div className={!isError ? "hidden" : "flex text-red-500"}>
+          {isError && <p>{isError}</p>}
         </div>
         <button
           className={`w-full ${styles.bgColors.primary} p-2 font-medium text-[#fff] rounded-md mt-5`}
           onClick={handleSubmit}
-          disabled={isLoading} // Disable the button if isLoading is true
+          disabled={isLoading}
         >
           {isLoading ? "Creating Account..." : "Create Account"}
         </button>

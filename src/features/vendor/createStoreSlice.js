@@ -10,8 +10,9 @@ const initialState = {
 export const createStore = createAsyncThunk(
   "createstore/createStore",
   async (formData) => {
+    console.log(formData);
     try {
-      const url = "https://localhost:7000/store";
+      const url = "http://localhost:6200/store";
       const response = await axios.post(url, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -19,12 +20,14 @@ export const createStore = createAsyncThunk(
       });
 
       console.log(response);
-
-      // Assuming your server returns some data after successful store creation
       // return response.data;
     } catch (error) {
-      // Handle errors
-      throw error;
+      if (error.response) {
+        const errorMessage = error.response.data.message;
+        throw new Error(errorMessage);
+      } else {
+        throw error;
+      }
     }
   }
 );

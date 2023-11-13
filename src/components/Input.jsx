@@ -1,7 +1,7 @@
 import React from "react";
 import { styles } from "../constants";
 
-const Input = ({ type, placeHolder, onChange, value, icon }) => {
+const Input = ({ type, placeHolder, onChange, value, icon, name }) => {
   return (
     <div className="flex justify-between ">
       <span className="w-full">
@@ -11,6 +11,7 @@ const Input = ({ type, placeHolder, onChange, value, icon }) => {
           type={type}
           onChange={onChange}
           value={value}
+          name={name}
         />
       </span>
       <span
