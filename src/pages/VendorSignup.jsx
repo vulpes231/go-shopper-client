@@ -12,8 +12,12 @@ import { categories } from "../constants/text";
 import { styles } from "../constants";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createStore } from "../features/vendor/createStoreSlice";
-import { Modal } from "../components";
+import {
+  createStore,
+  toggleIsCreated,
+  toggleModal,
+} from "../features/vendor/createStoreSlice";
+import { Logo, Modal } from "../components";
 
 const initState = {
   name: "",
@@ -30,20 +34,26 @@ const VendorSignup = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [form, setForm] = useState(initState);
-  const [showModal, setShowModal] = useState(true);
 
-  const isLoading = useSelector((state) => state.createstore.isLoading);
-  const isError = useSelector((state) => state.createstore.isError);
-  const isCreated = useSelector((state) => state.createstore.isCreated);
+  const { isLoading, isError, isCreated, showModal } = useSelector(
+    (state) => state.createstore
+  );
 
-  // handle input change
-  const handleChange = (e) => {
-    const { name, type } = e.target;
-    const value = type === "file" ? e.target.files[0] : e.target.value;
+  const handleTextChange = (e) => {
+    const { name, value } = e.target;
 
     setForm((prev) => ({
       ...prev,
       [name]: value,
+    }));
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+
+    setForm((prev) => ({
+      ...prev,
+      logo: file,
     }));
   };
 
@@ -58,23 +68,25 @@ const VendorSignup = () => {
     }
     // Dispatch the action with the formData
     dispatch(createStore(form));
+    dispatch(toggleIsCreated());
   };
 
   useEffect(() => {
     if (isCreated) {
       // If store creation is successful, show the modal
-      setShowModal(true);
+      dispatch(toggleModal());
 
       // Set a timer to hide the modal after 3 seconds and redirect to the login page
       const timer = setTimeout(() => {
-        setShowModal(false);
+        dispatch(toggleModal());
+        dispatch(toggleIsCreated());
         navigate("/vendor");
       }, 3000);
 
       // Cleanup the timer on component unmount
       return () => clearTimeout(timer);
     }
-  }, [isCreated]);
+  }, [isCreated, dispatch, navigate]);
 
   // get and populate categories
   const myCategories = categories.map((opt, index) => {
@@ -86,60 +98,64 @@ const VendorSignup = () => {
   });
 
   return (
-    <div className="p-6 min-h-screen flex flex-col gap-2">
-      <h3 className={`text-xl font-bold ${styles.textColors.primary} mb-5`}>
+    <div className="p-6 min-h-screen flex flex-col gap-2 lg:max-w-[1000px] lg:mx-auto">
+      <Logo />
+      <h3 className={`text-xl font-semibold ${styles.textColors.primary} my-5`}>
         Create New Store
       </h3>
       <form action="" className="flex flex-col gap-4 font-extralight">
         <div className="flex flex-col gap-1">
           <h3 className="font-normal">Personal Information</h3>
-          <Input
-            type="text"
-            icon={<HiOutlineUser />}
-            placeHolder="Owner's Name"
-            value={form.owner}
-            onChange={handleChange}
-            name="owner"
-          />
+          <div className="grid gap-2 md:grid-cols-2">
+            <Input
+              type="text"
+              icon={<HiOutlineUser />}
+              placeHolder="Owner's Name"
+              value={form.owner}
+              onChange={handleTextChange}
+              name="owner"
+            />
 
-          <Input
-            type="text"
-            icon={<HiOutlineUserAdd />}
-            placeHolder="Store Address (optional)"
-            value={form.address}
-            onChange={handleChange}
-            name="address"
-          />
-          <Input
-            type="text"
-            placeHolder="Phone"
-            icon={<HiOutlinePhone />}
-            value={form.phone}
-            onChange={handleChange}
-            name="phone"
-          />
+            <Input
+              type="text"
+              icon={<HiOutlineUserAdd />}
+              placeHolder="Store Address (optional)"
+              value={form.address}
+              onChange={handleTextChange}
+              name="address"
+            />
+            <Input
+              type="text"
+              placeHolder="Phone"
+              icon={<HiOutlinePhone />}
+              value={form.phone}
+              onChange={handleTextChange}
+              name="phone"
+            />
+          </div>
         </div>
         <div className="flex flex-col gap-1">
           <h3 className="font-normal">Store Information</h3>
-          <Input
-            type="text"
-            icon={<BsShopWindow />}
-            placeHolder="Store Name"
-            value={form.name}
-            onChange={handleChange}
-            name="name"
-          />
-          {/* categories */}
-          <select
-            name="category"
-            value={form.category}
-            onChange={handleChange}
-            className="w-full border border-[#333] p-2 outline-none"
-          >
-            <option value="">Store category</option>
-            {myCategories}
-          </select>
-
+          <div className="grid gap-2 md:grid-cols-2">
+            <Input
+              type="text"
+              icon={<BsShopWindow />}
+              placeHolder="Store Name"
+              value={form.name}
+              onChange={handleTextChange}
+              name="name"
+            />
+            {/* categories */}
+            <select
+              name="category"
+              value={form.category}
+              onChange={handleTextChange}
+              className="w-full border border-[#333] p-2 outline-none"
+            >
+              <option value="">Store category</option>
+              {myCategories}
+            </select>
+          </div>
           {/* multi */}
           <div>
             <label htmlFor="">Upload Logo</label>
@@ -147,30 +163,32 @@ const VendorSignup = () => {
               className="w-full border border-[#333] p-2"
               type="file"
               name="logo"
-              value={form.logo}
-              onChange={handleChange}
+              onChange={handleFileChange}
               placeholder="Select store logo"
             />
           </div>
         </div>
         <div className="flex flex-col gap-1">
           <h3 className="font-normal">Login Information</h3>
-          <Input
-            type="text"
-            placeHolder="Email"
-            icon={<HiOutlineMail />}
-            value={form.email}
-            onChange={handleChange}
-            name="email"
-          />
-          <Input
-            type="password"
-            placeHolder="Password"
-            icon={<HiOutlinePhone />}
-            value={form.password}
-            onChange={handleChange}
-            name="password"
-          />
+          <div className="grid gap-2 md:grid-cols-2">
+            <Input
+              type="text"
+              placeHolder="Email"
+              icon={<HiOutlineMail />}
+              value={form.email}
+              onChange={handleTextChange}
+              name="email"
+            />
+            <Input
+              type="password"
+              placeHolder="Password"
+              icon={<HiOutlinePhone />}
+              value={form.password}
+              onChange={handleTextChange}
+              name="password"
+              autoComplete="off"
+            />
+          </div>
         </div>
         <div className={!isError ? "hidden" : "flex text-red-500"}>
           {isError && <p>{isError}</p>}
@@ -185,7 +203,7 @@ const VendorSignup = () => {
         {showModal && (
           <Modal message="Store created successfully!" icon={<HiThumbUp />} />
         )}
-        <p className="flex gap-2">
+        <p className="flex gap-2 items-center md:justify-center">
           Already have a vendor account?
           <Link className={` ${styles.textColors.primary}`} to="/vendor">
             Sign In

@@ -5,6 +5,7 @@ const initialState = {
   isLoading: false,
   isCreated: false,
   isError: "",
+  showModal: false,
 };
 
 export const createStore = createAsyncThunk(
@@ -19,10 +20,7 @@ export const createStore = createAsyncThunk(
         },
       });
 
-      console.log(response);
-      console.log(response.status);
-      console.log(response.data.message);
-      // return response.data;
+      return response.data;
     } catch (error) {
       if (error.response) {
         const errorMessage = error.response.data.message;
@@ -37,7 +35,14 @@ export const createStore = createAsyncThunk(
 const createVendorStore = createSlice({
   name: "createstore",
   initialState,
-  reducers: {},
+  reducers: {
+    toggleModal: (state) => {
+      state.showModal = !state.showModal;
+    },
+    toggleIsCreated: (state) => {
+      state.isCreated = !state.isCreated;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(createStore.pending, (state, action) => {
@@ -45,15 +50,15 @@ const createVendorStore = createSlice({
       })
       .addCase(createStore.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.isCreated = true;
         state.isError = "";
       })
       .addCase(createStore.rejected, (state, action) => {
         state.isLoading = false;
-        state.isCreated = false;
         state.isError = action.error.message;
       });
   },
 });
+
+export const { toggleModal, toggleIsCreated } = createVendorStore.actions;
 
 export default createVendorStore.reducer;

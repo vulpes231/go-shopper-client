@@ -1,7 +1,15 @@
 import React from "react";
 import { styles } from "../constants";
 
-const Input = ({ type, placeHolder, onChange, value, icon, name }) => {
+const Input = ({
+  type,
+  placeHolder,
+  onChange,
+  value,
+  icon,
+  name,
+  autoComplete,
+}) => {
   return (
     <div className="flex justify-between ">
       <span className="w-full">
@@ -12,6 +20,7 @@ const Input = ({ type, placeHolder, onChange, value, icon, name }) => {
           onChange={onChange}
           value={value}
           name={name}
+          autoComplete={autoComplete}
         />
       </span>
       <span
