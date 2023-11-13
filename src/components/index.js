@@ -4,5 +4,6 @@ import Footer from "./Footer";
 import Error from "./Error";
 import Logo from "./Logo";
 import Input from "./Input";
+import Modal from "./Modal";
 
-export { NavBar, HomePage, Footer, Error, Logo, Input };
+export { NavBar, HomePage, Footer, Error, Logo, Input, Modal };

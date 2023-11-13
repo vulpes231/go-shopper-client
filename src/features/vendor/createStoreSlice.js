@@ -20,6 +20,8 @@ export const createStore = createAsyncThunk(
       });
 
       console.log(response);
+      console.log(response.status);
+      console.log(response.data.message);
       // return response.data;
     } catch (error) {
       if (error.response) {

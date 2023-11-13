@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Input from "../components/Input";
 import {
   HiOutlineMail,
   HiOutlinePhone,
   HiOutlineUser,
   HiOutlineUserAdd,
+  HiThumbUp,
 } from "react-icons/hi";
 import { BsShopWindow } from "react-icons/bs";
 import { categories } from "../constants/text";
 import { styles } from "../constants";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createStore } from "../features/vendor/createStoreSlice";
+import { Modal } from "../components";
 
 const initState = {
   name: "",
@@ -26,10 +28,13 @@ const initState = {
 
 const VendorSignup = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [form, setForm] = useState(initState);
+  const [showModal, setShowModal] = useState(true);
 
   const isLoading = useSelector((state) => state.createstore.isLoading);
   const isError = useSelector((state) => state.createstore.isError);
+  const isCreated = useSelector((state) => state.createstore.isCreated);
 
   // handle input change
   const handleChange = (e) => {
@@ -54,6 +59,23 @@ const VendorSignup = () => {
     // Dispatch the action with the formData
     dispatch(createStore(form));
   };
+
+  useEffect(() => {
+    if (isCreated) {
+      // If store creation is successful, show the modal
+      setShowModal(true);
+
+      // Set a timer to hide the modal after 3 seconds and redirect to the login page
+      const timer = setTimeout(() => {
+        setShowModal(false);
+        navigate("/vendor");
+      }, 3000);
+
+      // Cleanup the timer on component unmount
+      return () => clearTimeout(timer);
+    }
+  }, [isCreated]);
+
   // get and populate categories
   const myCategories = categories.map((opt, index) => {
     return (
@@ -160,6 +182,9 @@ const VendorSignup = () => {
         >
           {isLoading ? "Creating Account..." : "Create Account"}
         </button>
+        {showModal && (
+          <Modal message="Store created successfully!" icon={<HiThumbUp />} />
+        )}
         <p className="flex gap-2">
           Already have a vendor account?
           <Link className={` ${styles.textColors.primary}`} to="/vendor">
