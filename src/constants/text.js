@@ -20,3 +20,11 @@ export const categories = [
   "Games",
   "Computer",
 ];
+
+// export const storeLinks = [
+//   { id: "dashboard", title: "dashboard", path: "/storedash" },
+//   { id: "product", title: "product", path: "/product" },
+//   { id: "shops", title: "shops", path: "/shops" },
+//   { id: "about", title: "about", path: "/about" },
+//   { id: "help", title: "help", path: "/help" },
+// ]

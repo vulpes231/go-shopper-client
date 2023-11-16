@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Input from "../components/Input";
+import Input from "../../components/Input";
 import {
   HiOutlineMail,
   HiOutlinePhone,
@@ -8,16 +8,16 @@ import {
   HiThumbUp,
 } from "react-icons/hi";
 import { BsShopWindow } from "react-icons/bs";
-import { categories } from "../constants/text";
-import { styles } from "../constants";
+import { categories } from "../../constants/text";
+import { styles } from "../../constants";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   createStore,
   toggleIsCreated,
   toggleModal,
-} from "../features/vendor/createStoreSlice";
-import { Logo, Modal } from "../components";
+} from "../../features/vendor/createStoreSlice";
+import { Logo, Modal } from "../../components";
 
 const initState = {
   name: "",

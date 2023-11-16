@@ -1,9 +1,9 @@
 import React from "react";
 
 import { HiMail, HiLockOpen } from "react-icons/hi";
-import Input from "../components/Input";
+import Input from "../../components/Input";
 import { Link } from "react-router-dom";
-import { styles } from "../constants";
+import { styles } from "../../constants";
 
 const VendorLogin = () => {
   return (
