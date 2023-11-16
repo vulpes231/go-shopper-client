@@ -11,6 +11,7 @@ export const styles = {
     primary: "text-[#176FA6]",
     secondary: "text-[#1E91D9]",
     dark: "text-[#333]",
+    light: "text-[#F2F2F2]",
   },
   border: {
     primary: "border-[#176FA6] ",

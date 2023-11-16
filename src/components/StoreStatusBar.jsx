@@ -21,7 +21,7 @@ const StoreStatusBar = () => {
             Go <span className={`${styles.textColors.dark}`}>Shopper</span>
           </h1>
         </figure>
-        <ul className="flex gap-8">
+        <ul className="hidden md:flex gap-8">
           <Tab
             customCLass={
               active === 1

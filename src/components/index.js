@@ -6,5 +6,18 @@ import Logo from "./Logo";
 import Input from "./Input";
 import Modal from "./Modal";
 import StoreStatusBar from "./StoreStatusBar";
+import StoreInfo from "./StoreInfo";
+import StoreData from "./StoreData";
 
-export { NavBar, HomePage, Footer, Error, Logo, Input, Modal, StoreStatusBar };
+export {
+  NavBar,
+  HomePage,
+  Footer,
+  Error,
+  Logo,
+  Input,
+  Modal,
+  StoreStatusBar,
+  StoreData,
+  StoreInfo,
+};
