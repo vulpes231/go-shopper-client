@@ -4,12 +4,7 @@ import { HiUserCircle } from "react-icons/hi";
 import Tab from "./Tab";
 import { styles } from "../constants";
 
-const StoreStatusBar = () => {
-  const [active, setActive] = useState(1);
-
-  const setTabActive = (tabNo) => {
-    setActive(tabNo);
-  };
+const StoreStatusBar = ({ active, setTabActive }) => {
   return (
     <div>
       <nav className="flex justify-between items-center p-6">
