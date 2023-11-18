@@ -1,5 +1,4 @@
 import React from "react";
-import { styles } from "../constants";
 
 const Tab = ({ customCLass, onClick, title, icon }) => {
   return (

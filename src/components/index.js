@@ -8,6 +8,7 @@ import Modal from "./Modal";
 import StoreStatusBar from "./StoreStatusBar";
 import StoreInfo from "./StoreInfo";
 import StoreData from "./StoreData";
+import NewestProducts from "./NewestProducts";
 
 export {
   NavBar,
@@ -20,4 +21,5 @@ export {
   StoreStatusBar,
   StoreData,
   StoreInfo,
+  NewestProducts,
 };

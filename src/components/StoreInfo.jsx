@@ -5,16 +5,17 @@ import NewestProducts from "./NewestProducts";
 const StoreInfo = () => {
   return (
     <div className="flex flex-col gap-4">
-      <div>
-        <h3>Overview</h3>
-        <p>Get up to minute reports about your store performance</p>
+      <div className="flex flex-col gap-2">
+        <h3 className="text-2xl font-semibold tracking-wide">Overview</h3>
+        <p className="font-extralight text-sm md:text-lg">
+          Get up to minute reports about your store performance
+        </p>
       </div>
-      <article className="flex flex-col gap-4">
+      <article className="flex flex-col gap-4 md:flex-row">
         <StoreData
           title="Total product viewed"
           info="Number of products clicked and viewed"
           amount="500"
-          // status="increase"
           percent="2%"
         />
         <StoreData
@@ -22,7 +23,6 @@ const StoreInfo = () => {
           info="Amount of product sold"
           amount="$ 1000.00"
           percent="4%"
-          // status="decrease"
         />
       </article>
       <article>
