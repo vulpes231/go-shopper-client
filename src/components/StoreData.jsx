@@ -19,7 +19,7 @@ const StoreData = ({ title, info, amount, map, percent }) => {
           </p>
         </span>
         <h3
-          className={`text-2xl md:text-3xl ${styles.textColors.secondary} font-semibold`}
+          className={`text-2xl md:text-3xl ${styles.textColors.primary} font-semibold`}
         >
           {amount}
         </h3>

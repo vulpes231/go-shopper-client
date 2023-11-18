@@ -20,7 +20,7 @@ const StoreStatusBar = ({ active, setTabActive }) => {
     setToggle((prev) => !prev);
   };
   return (
-    <div>
+    <div className="fixed top-0 w-full bg-white">
       <nav className="flex justify-between items-center px-6 py-4 md:py-6 lg:max-w-[1100px] lg:mx-auto">
         <figure className="flex items-center gap-1">
           <img src={logo} alt="app-logo" className="w-[30px]" />
@@ -68,14 +68,14 @@ const StoreStatusBar = ({ active, setTabActive }) => {
             className={
               !toggle
                 ? "hidden"
-                : "absolute top-8 bg-[#333] text-[#fff] p-3 h-[130px] right-0 font-light text-md rounded-md w-[120px] flex flex-col gap-3"
+                : `absolute top-8 ${styles.bgColors.primary} text-[#fff] p-3 h-[130px] right-0 font-light text-md rounded-md w-[120px] flex flex-col gap-3`
             }
           >
             <span className="flex gap-1 items-center">
               <HiUser /> Profile
             </span>
             <span className="flex gap-1 items-center">
-              <HiPresentationChartLine /> Settings
+              <HiCog /> Settings
             </span>
             <span className="flex gap-1 items-center">
               <HiChevronDown /> Sign Out

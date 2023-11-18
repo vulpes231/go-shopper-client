@@ -31,7 +31,7 @@ const NewestProducts = () => {
         {/* show 5 even if returned data is more than 5 */}
         <TableData
           title="iPhone"
-          desc="Refurbished iphone 6"
+          desc="Refurbished iPhone 6"
           price="$25.23"
           date="Nov 23rd, 2023"
         />

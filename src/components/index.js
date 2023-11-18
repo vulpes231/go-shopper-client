@@ -9,6 +9,8 @@ import StoreStatusBar from "./StoreStatusBar";
 import StoreInfo from "./StoreInfo";
 import StoreData from "./StoreData";
 import NewestProducts from "./NewestProducts";
+import CreateProductInput from "./CreateProductInput";
+import CreateProductForm from "./CreateProductForm";
 
 export {
   NavBar,
@@ -22,4 +24,6 @@ export {
   StoreData,
   StoreInfo,
   NewestProducts,
+  CreateProductInput,
+  CreateProductForm,
 };
