@@ -5,7 +5,7 @@ const CreateProductInput = ({ type, placeholder, value, onChange }) => {
     <input
       type={type}
       placeholder={placeholder}
-      className="w-full"
+      className="w-full p-2 rounded-md"
       value={value}
       onChange={onChange}
     />

@@ -1,5 +1,6 @@
 import React from "react";
-import { HiBackspace } from "react-icons/hi";
+import { FaBackward } from "react-icons/fa";
+import {} from "react-icons/bs";
 import { styles } from "../constants";
 import CreateProductInput from "./CreateProductInput";
 
@@ -13,10 +14,13 @@ const CreateProductForm = ({ toggle, handleToggle }) => {
       }
     >
       <div
-        className={`${styles.bgColors.primary} ${styles.textColors.light} w-full p-6 rounded-xl`}
+        className={`${styles.bgColors.primary} bg-opacity-80 ${styles.textColors.light} w-full p-6 rounded-xl lg:w-[500px] lg:mx-auto`}
       >
-        <span onClick={handleToggle} className="flex items-center gap-1">
-          Close form <HiBackspace />
+        <span
+          onClick={handleToggle}
+          className="flex gap-1 justify-end items-center"
+        >
+          Close form <FaBackward />
         </span>
         <form action="" className="flex flex-col gap-2 ">
           <label htmlFor="product_name">
@@ -38,6 +42,9 @@ const CreateProductForm = ({ toggle, handleToggle }) => {
             Select Image
             <CreateProductInput type="file" />
           </label>
+          <button className={`p-2 border rounded-md ${styles.border.light}`}>
+            Create product
+          </button>
         </form>
       </div>
     </div>

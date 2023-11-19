@@ -21,7 +21,7 @@ const StoreStatusBar = ({ active, setTabActive }) => {
   };
   return (
     <div className="fixed top-0 w-full bg-white">
-      <nav className="flex justify-between items-center px-6 py-4 md:py-6 lg:max-w-[1100px] lg:mx-auto">
+      <nav className="flex justify-between items-center px-6 py-4 md:py-6 ">
         <figure className="flex items-center gap-1">
           <img src={logo} alt="app-logo" className="w-[30px]" />
           <h1

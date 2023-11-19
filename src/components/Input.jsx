@@ -14,7 +14,7 @@ const Input = ({
     <div className="flex justify-between ">
       <span className="w-full">
         <input
-          className={`w-full border border-[#333] p-2 outline-none`}
+          className={`w-full border ${styles.border.primary} p-2 outline-none`}
           placeholder={placeHolder}
           type={type}
           onChange={onChange}
@@ -24,7 +24,7 @@ const Input = ({
         />
       </span>
       <span
-        className={`w-[15%] flex justify-center items-center border border-[#333] ${styles.textColors.primary} `}
+        className={`w-[15%] flex justify-center items-center ${styles.bgColors.primary} ${styles.textColors.light} `}
       >
         {icon}
       </span>

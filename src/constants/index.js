@@ -16,5 +16,6 @@ export const styles = {
   border: {
     primary: "border-[#176FA6] ",
     secondary: "border-[#1E91D9]",
+    light: "border-[#fff]",
   },
 };

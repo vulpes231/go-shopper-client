@@ -4,7 +4,7 @@ import NewestProducts from "./NewestProducts";
 
 const StoreInfo = () => {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 lg:max-w-[1100px] lg:mx-auto w-full">
       <div className="flex flex-col gap-2">
         <h3 className="text-2xl font-semibold tracking-wide">Overview</h3>
         <p className="font-extralight text-sm md:text-lg">

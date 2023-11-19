@@ -194,7 +194,7 @@ const VendorSignup = () => {
           {isError && <p>{isError}</p>}
         </div>
         <button
-          className={`w-full ${styles.bgColors.primary} p-2 font-medium text-[#fff] rounded-md mt-5`}
+          className={`w-full ${styles.bgColors.primary} p-2 font-medium text-[#fff] rounded-md mt-5 lg:w-[350px] lg:mx-auto`}
           onClick={handleSubmit}
           disabled={isLoading}
         >
