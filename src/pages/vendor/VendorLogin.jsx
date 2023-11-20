@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { HiMail, HiLockOpen } from "react-icons/hi";
 import Input from "../../components/Input";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { styles } from "../../constants";
 import { useDispatch, useSelector } from "react-redux";
 import { loginVendorApi } from "../../features/vendor/vendorLoginSlice";
 
 const VendorLogin = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { error, accessToken, isLoading } = useSelector(
     (state) => state.vendorlogin
@@ -33,6 +34,12 @@ const VendorLogin = () => {
     e.preventDefault();
     dispatch(loginVendorApi(formData));
   };
+
+  useEffect(() => {
+    if (accessToken && accessToken !== null) {
+      navigate("/storedash");
+    }
+  }, [accessToken]);
 
   return (
     <div className="p-6 min-h-screen flex justify-center items-center ">

@@ -11,15 +11,15 @@ const initialState = {
 export const loginVendorApi = createAsyncThunk(
   "vendorlogin/loginVendor",
   async (formData) => {
-    console.log(formData);
     try {
-      const url = "http://localhost:6200/auth";
+      const url = "http://localhost:6200/auth-store";
       const response = await axios.post(url, formData, {
         headers: {
           "Content-Type": "application/json",
         },
       });
-      console.log(response);
+
+      return response.data;
     } catch (error) {
       console.log(error);
       if (error.response) {
@@ -43,7 +43,7 @@ const loginVendorSlice = createSlice({
       })
       .addCase(loginVendorApi.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.accessToken = action.payload.accessToken;
+        state.accessToken = action.payload.token;
         state.storeName = action.payload.storeName;
         state.error = "";
       })

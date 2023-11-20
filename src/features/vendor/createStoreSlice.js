@@ -11,9 +11,8 @@ const initialState = {
 export const createStore = createAsyncThunk(
   "createstore/createStore",
   async (formData) => {
-    console.log(formData);
     try {
-      const url = "http://localhost:6200/store";
+      const url = "http://localhost:6200/create-store";
       const response = await axios.post(url, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -39,9 +38,6 @@ const createVendorStore = createSlice({
     toggleModal: (state) => {
       state.showModal = !state.showModal;
     },
-    toggleIsCreated: (state) => {
-      state.isCreated = !state.isCreated;
-    },
   },
   extraReducers: (builder) => {
     builder
@@ -51,10 +47,14 @@ const createVendorStore = createSlice({
       .addCase(createStore.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = "";
+        state.isCreated = true;
+        state.showModal = true;
       })
       .addCase(createStore.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = action.error.message;
+        state.isCreated = false;
+        state.showModal = false;
       });
   },
 });

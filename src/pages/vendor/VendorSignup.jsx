@@ -68,18 +68,17 @@ const VendorSignup = () => {
     }
     // Dispatch the action with the formData
     dispatch(createStore(form));
-    dispatch(toggleIsCreated());
+    // dispatch(toggleIsCreated());
   };
 
   useEffect(() => {
     if (isCreated) {
       // If store creation is successful, show the modal
-      dispatch(toggleModal());
+      // dispatch(toggleModal());
 
       // Set a timer to hide the modal after 3 seconds and redirect to the login page
       const timer = setTimeout(() => {
         dispatch(toggleModal());
-        dispatch(toggleIsCreated());
         navigate("/vendor");
       }, 3000);
 
