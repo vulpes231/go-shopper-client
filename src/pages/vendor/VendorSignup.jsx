@@ -73,9 +73,6 @@ const VendorSignup = () => {
 
   useEffect(() => {
     if (isCreated) {
-      // If store creation is successful, show the modal
-      // dispatch(toggleModal());
-
       // Set a timer to hide the modal after 3 seconds and redirect to the login page
       const timer = setTimeout(() => {
         dispatch(toggleModal());

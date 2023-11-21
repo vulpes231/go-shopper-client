@@ -10,13 +10,21 @@ const VendorDash = () => {
 
   const { accessToken } = useSelector((state) => state.vendorlogin);
 
+  let token;
+
+  if (accessToken && accessToken !== null) {
+    sessionStorage.setItem("token", accessToken);
+    token = sessionStorage.getItem("token", accessToken);
+    console.log(token);
+  }
+
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!accessToken || accessToken === null) {
-      navigate("/vendor");
-    }
-  }, [accessToken]);
+  // useEffect(() => {
+  //   if (!token || token === null) {
+  //     navigate("/vendor");
+  //   }
+  // }, [token]);
 
   const setTabActive = (tabNo) => {
     setActive(tabNo);
