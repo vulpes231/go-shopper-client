@@ -15,7 +15,7 @@ const NewestProducts = () => {
           </p>
         </span>
         <Link
-          className={`p-2 border ${styles.border.secondary} border-opacity-20 rounded-xl font-extralight text-sm md:text-lg md:p-3`}
+          className={`p-2 border ${styles.bgColors.primary} ${styles.textColors.light} border-opacity-20 rounded-xl font-medium text-sm md:text-lg md:p-3`}
         >
           See more
         </Link>
