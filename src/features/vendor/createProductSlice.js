@@ -4,6 +4,7 @@ import axios from "axios";
 const initialState = {
   isLoading: false,
   isCreated: false,
+  data: null,
   isError: "",
 };
 
@@ -43,11 +44,13 @@ const createNewProduct = createSlice({
       .addCase(createProduct.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isCreated = true;
+        state.data = action.payload;
         state.isError = "";
       })
       .addCase(createProduct.rejected, (state, action) => {
         state.isLoading = false;
         state.isCreated = false;
+        state.data = null;
         state.isError = action.error.message;
       });
   },

@@ -2,14 +2,23 @@ import React, { useState } from "react";
 import { FaBackward } from "react-icons/fa";
 import { styles } from "../constants";
 import CreateProductInput from "./CreateProductInput";
+import { useDispatch, useSelector } from "react-redux";
+import { createProduct } from "../features/vendor/createProductSlice";
+
+const initialState = {
+  product_name: "",
+  product_desc: "",
+  price: "",
+  product_image: "",
+};
 
 const CreateProductForm = ({ toggle, handleToggle }) => {
-  const initialState = {
-    product_name: "",
-    product_desc: "",
-    price: "",
-    product_image: "",
-  };
+  const dispatch = useDispatch();
+  const navigate = useDispatch();
+
+  const { isCreated, isLoading, data, isError } = useSelector(
+    (state) => state.createproduct
+  );
 
   const [formData, setFormData] = useState(initialState);
 
@@ -27,7 +36,15 @@ const CreateProductForm = ({ toggle, handleToggle }) => {
     }));
   };
 
-  function handleFormSubmit() {}
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    const form = new FormData();
+    for (const key in formData) {
+      form.append(key, form[key]);
+    }
+    dispatch(createProduct(formData));
+  }
+
   return (
     <div
       className={
@@ -45,7 +62,11 @@ const CreateProductForm = ({ toggle, handleToggle }) => {
         >
           Close form <FaBackward />
         </span>
-        <form action="" className="flex flex-col gap-2  ">
+        <form
+          action=""
+          className="flex flex-col gap-2"
+          onSubmit={handleFormSubmit}
+        >
           <label htmlFor="product_name">
             Name
             <CreateProductInput
@@ -84,7 +105,10 @@ const CreateProductForm = ({ toggle, handleToggle }) => {
               onChange={handleFileChange}
             />
           </label>
-          <button className={`p-2 border rounded-md ${styles.border.light}`}>
+          <button
+            type="submit"
+            className={`p-2 border rounded-md ${styles.border.light}`}
+          >
             Create product
           </button>
         </form>

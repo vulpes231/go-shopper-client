@@ -5,6 +5,7 @@ import Error from "./Error";
 import Logo from "./Logo";
 import Input from "./Input";
 import Modal from "./Modal";
+import Hero from "./Hero";
 import StoreStatusBar from "./StoreStatusBar";
 import StoreInfo from "./StoreInfo";
 import StoreData from "./StoreData";
@@ -13,6 +14,7 @@ import CreateProductInput from "./CreateProductInput";
 import CreateProductForm from "./CreateProductForm";
 
 export {
+  Hero,
   NavBar,
   HomePage,
   Footer,

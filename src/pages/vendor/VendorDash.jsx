@@ -20,11 +20,11 @@ const VendorDash = () => {
 
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (!token || token === null) {
-  //     navigate("/vendor");
-  //   }
-  // }, [token]);
+  useEffect(() => {
+    if (!token || token === null) {
+      navigate("/vendor");
+    }
+  }, [token]);
 
   const setTabActive = (tabNo) => {
     setActive(tabNo);
