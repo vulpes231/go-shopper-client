@@ -11,6 +11,7 @@ const NavBar = () => {
   const [toggle, setToggle] = useState(false);
 
   function handleToggle() {
+    console.log("CLicked");
     setToggle((prev) => !prev);
   }
 
@@ -45,6 +46,7 @@ const NavBar = () => {
           </span>
           <Link
             className={`${styles.bgColors.primary} text-teal-50 p-3 text-lg rounded-lg font-extralight`}
+            to={"/buyer"}
           >
             Signin / Signup
           </Link>

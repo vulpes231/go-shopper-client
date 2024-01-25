@@ -21,10 +21,16 @@ export const categories = [
   "Computer",
 ];
 
-// export const storeLinks = [
-//   { id: "dashboard", title: "dashboard", path: "/storedash" },
-//   { id: "product", title: "product", path: "/product" },
-//   { id: "shops", title: "shops", path: "/shops" },
-//   { id: "about", title: "about", path: "/about" },
-//   { id: "help", title: "help", path: "/help" },
-// ]
+export const aboutGoshopper = [
+  { id: 1, title: "Contact Us" },
+  { id: 2, title: "About Us" },
+  { id: 3, title: "Start Selling" },
+  { id: 4, title: "Terms and Conditions" },
+];
+
+export const extras = [
+  { id: 1, title: "Site Map" },
+  { id: 2, title: "Track an Order" },
+  { id: 3, title: "Privacy Policy" },
+  { id: 4, title: "FAQs" },
+];
