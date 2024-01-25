@@ -1,3 +1,4 @@
 import logo from "./shoplogo.png";
+import shop from "./shop.png";
 
-export { logo };
+export { logo, shop };

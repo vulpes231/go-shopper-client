@@ -10,7 +10,7 @@ const Content = () => {
       className={`min-h-screen w-full ${styles.bgColors.light} flex flex-col`}
     >
       <NavBar />
-      <main className="min-h-screen mt-28">
+      <main className="min-h-screen mt-16">
         <Hero />
       </main>
       <Footer />

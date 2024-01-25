@@ -1,18 +1,15 @@
 import React from "react";
-import { BsCart } from "react-icons/bs";
-import { styles } from "../constants";
+import { BsSearch } from "react-icons/bs";
 
 const Search = () => {
   return (
-    <span className="relative hidden md:flex gap-2 items-center">
+    <span className="relative hidden md:flex">
       <input
         type="text"
-        className={`border ${styles.border.primary} rounded-sm px-2`}
-        placeholder="Search"
+        className={`bg-zinc-100 p-4 lg:py-6 lg:px-8 w-full rounded-lg  text-lg placeholder:text-2xl font-extralight`}
+        placeholder="Search for products or categories"
       />
-      <BsCart
-        className={`${styles.textColors.primary} text-xl font-semibold`}
-      />
+      <BsSearch className="absolute right-4 top-5 text-slate-400 text-xl lg:top-6 lg:right-6 " />
     </span>
   );
 };
